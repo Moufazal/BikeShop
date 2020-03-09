@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- ==========> Bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- ==========> Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Open+Sans:300,400&display=swap" rel="stylesheet">
+
+    <!-- ==========> Fontawesome (need to create a free account to use it) -->
+    <script src="https://kit.fontawesome.com/7ad7a46aef.js"></script>
+
+    <!-- ==========> CSS file -->
+    <link rel="stylesheet" href="../stylesheets/style.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <!-- ==========> Nav Row: https://getbootstrap.com/docs/4.3/components/navbar/ -->
+        <div class="row">
+          <div class="col">
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="#">
+                <img src="../images/bike-logo.svg" width="50" height=50" class="d-inline-block align-center" alt="">
+                The Bike Shop Experience
+                </a>
+                <a class="navbar-brand" href="/shop">
+                  <i class="fas fa-shopping-cart"></i>
+                  My Basket
+                </a>
+            </nav>
+          </div>
+        </div>
+
+
+        <!-- ==========> Background image row below the nav -->
+        <div class="row">
+          <div class="col img_background">
+          </div>
+        </div>
+
+        <!-- ==========> Cards row -->
+        <div class="row row_card">
+            <!-- loop in dataBike var to display all bikes informations -->
+            <% for (var i=0; i < dataBike.length; i++) {
+            %>
+          <div class="col-12 col-sm-6 col-md-4">
+            <div class="card">
+                <img src="../images/<%= dataBike[i].vImg%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Model <%= dataBike[i].vModel%></h5>
+                    <div class="card_price_btn">
+                        <p class="card-text"><%= dataBike[i].vPrix%>€</p>
+                        <!-- ==========> Form POST to send to the backend all bike bought informations -->
+                        <form action="/shop" method="post">
+                          <input type="hidden" name="bike_model" value="<%= dataBike[i].vModel%>">
+                          <input type="hidden" name="bike_img" value="<%= dataBike[i].vImg%>">
+                          <input type="hidden" name="bike_prix" value="<%= dataBike[i].vPrix%>">
+                          <input type="hidden" name="bike_qtity" value="1">
+                          <button class="btn btn-outline-info" type="submit">Buy</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+
+      </div>
+
+</body>
+
+</html>

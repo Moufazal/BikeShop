@@ -1,0 +1,173 @@
+/* Police google font Montserrat appliqué à tout le site */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+
+/* Supprimer le padding à D et à G sur les col */
+.col{
+padding-right: 0px;
+padding-left: 0px;
+}
+
+/* Nav background color + height + Font size */
+.navbar{
+    background-color: #343A3F;
+    padding : 0px;
+    height: 50px;
+}
+
+.navbar-brand{
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+
+/* Img de fond en dessous de la nav */
+.img_background{
+    background-image: url('../images/bike-background.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 40vh;
+    margin-bottom: 30px;
+}
+
+/* positionnement du body de la card */
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    padding-top: 10px;
+}
+
+/* Style appliqué au p et btn ds le body de la card */
+/* .card_price_btn{
+    display: flex;
+    align-items: baseline;
+} */
+
+.card_price_btn p{
+    margin: 0px 0px 5px 0px;
+}
+
+/* Modifier la font ds la card body pour le title */
+.card-body h5{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Modifier le style du bouton */
+.card_price_btn .btn{
+    padding: 3px;
+    font-weight: 300;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* Modifier la font p ds la card */
+.card_price_btn p{
+    font-weight: 300;
+    font-size: 13px;
+}
+
+/* Ajouter une marge à D et en bas pr separer les div cards */
+.card{
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-bottom: 5%;
+}
+
+/* Centrer les elements card ds la page */
+.row{
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.row_card{
+    display: flex;
+    align-items: center;
+}
+
+
+/* DS Shop, bordure H et B + G autour des libellés + font */
+.lib_basket{
+    border-top: solid 1px #F3F3F3;
+    border-bottom: solid 1px #F3F3F3;
+    margin-bottom: 20px;
+    /* padding-left: 5px; */
+    padding-bottom: 7px;
+    padding-top: 7px;
+    font-size: 15px;
+}
+
+
+/* Ds Shop, taille de l'image velo */
+.imgPicBasket{
+    width: 150px;
+}
+
+.header_shop{
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 10px;
+}
+
+.title_shop{
+    font-size: 23px;
+    font-weight: 300;
+    padding-left: 20px;
+}
+
+
+.bike_card{
+    font-weight: 300;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #F2F2F2;
+    background-color: #fcfcfc;
+}
+
+
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px;
+}
+
+
+
+/**
+    STYLE FOR STRIPE
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+ .StripeElement {
+    box-sizing: border-box;
+  
+    height: 40px;
+  
+    padding: 10px 12px;
+  
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+  
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }

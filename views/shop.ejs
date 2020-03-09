@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- ==========> Bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- ==========> Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Open+Sans:300,400&display=swap" rel="stylesheet">
+
+    <!-- ==========> Fontawesome -->
+    <script src="https://kit.fontawesome.com/7ad7a46aef.js"></script>
+
+    <!-- ==========> CSS file -->
+    <link rel="stylesheet" href="../stylesheets/style.css">
+
+</head>
+<body>
+    
+    <div class="container">
+        <!-- ==========> Nav row -->
+        <div class="row">
+          <div class="col">
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="#">
+                <i class="fas fa-shopping-cart"></i>
+                My Basket
+                </a>
+            </nav>
+          </div>
+        </div>
+
+
+        <!-- ==========> Breadcrumb row: https://getbootstrap.com/docs/4.3/components/breadcrumb/ -->
+        <div class="row">
+          <div class="col header_shop">
+            <nav id="card-breadcrumb" aria-label="breadcrumb"">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Basket</li>
+                  </ol>
+            </nav>
+           </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col title_shop">
+                <p>Basket</p>
+            </div>
+        </div>
+
+
+        <% if (dataBikeShop.length > 0){
+            console.log('dataBikeShop length : ',dataBikeShop.length);
+        %>
+        <div>
+            <div class="row lib_basket">
+                <div class="col-5 col-sm-3">
+                    Picture
+                </div>
+                <div class="col-4 d-none d-sm-block">
+                    Model
+                </div>
+                <div class="col-3 col-sm-2">
+                    Quantity
+                </div>
+                <div class="col-2 col-sm-1">
+                    Price
+                </div>
+                <div class="col-1 d-none d-sm-block">
+                    Total
+                </div>
+                <div class="col-2 col-sm-1">
+                    Suppr
+                </div>
+            </div>
+
+                <!-- var General total  -->
+                <% var vTotalPanier = 0; %>
+                <!-- loop to display all bikes added to cart -->
+                <% for (var i=0; i < dataBikeShop.length; i++) {
+                    <!-- var Total Price per bike -->
+                    var vTotal = dataBikeShop[i].vQtity*dataBikeShop[i].vPrix;
+                    vTotalPanier = vTotalPanier + vTotal;
+                %>
+            <div class="row bike_card">
+                    <div class="col-5 col-sm-3">
+                    <img class="imgPicBasket" src="../images/<%= dataBikeShop[i].vImg %>" alt="">
+                    </div>
+                    <div class="col-4 d-none d-sm-block">
+                        Model <%= dataBikeShop[i].vModel %>
+                    </div>
+                    <div class="col-3 col-sm-2 qtity">
+                    <div class="row">
+                        <div class="col-8">
+                        <form method="POST" action="/update-shop">
+                            <input name="position" type="hidden" value="<%=i%>">
+                            <input type="text" placeholder="1" value="<%=dataBikeShop[i].vQtity%>" name="bikeQuantity" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-4">
+                        <button type="submit" class="btn btn-outline-info btn-sm"><i class="fas fa-sync" aria-hidden="true"></i></button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-2 col-sm-1">
+                        <%= dataBikeShop[i].vPrix %>€
+                    </div>
+                    <div class="col-1 d-none d-sm-block">
+                        <%= vTotal %>€
+                    </div>
+                    <div class="col-2 col-sm-1">
+                        <!-- Send the bike position to delete -->
+                        <a href="/delete_bike?position=<%=i%>" class="btn btn-outline-info btn-sm"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+            </div>
+                <% } %>
+
+
+            <div class="row lib_basket">
+                <div class="col-8 col-sm-10 text-right">
+                    Total basket
+                </div>
+                <div class="col-4 col-sm-2">
+                    <%= vTotalPanier %> €
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 text-right">
+                <button id="checkout" type="button" class="btn btn-outline-info btn-sm" name="button">Checkout</button>
+                </div>
+            </div>
+        </div>
+        <% } else{
+        %>
+            <div class="text-center text-danger">
+              Il n'y a aucun article dans le panier.
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var sessionStripeID = "<%=sessionStripeID%>"
+    </script>
+    <script src="../javascripts/script.js"></script>
+
+</body>
+
+</html>
