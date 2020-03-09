@@ -34,19 +34,25 @@ router.get('/', function(req, res, next) {
 
 /* GET Shop page. */
 router.get('/shop', async function(req, res, next) {
+  if (!req.session.dataBikeShop){
+    req.session.dataBikeShop = [];
+  }
+  if (!req.session.stripeCard){
+    req.session.stripeCard = [];
+  }
     // STRIPE
     // Delete datas on session stripeCard in order to add them by dataBikeShop
-  if(req.session.dataBikeShop.length > 0){
-    req.session.stripeCard.splice(0);
-    for (var i = 0; i < req.session.dataBikeShop.length; i++){
-      req.session.stripeCard.push({
-        name: req.session.dataBikeShop[i].vModel,
-        amount: req.session.dataBikeShop[i].vPrix * 100,
-        currency: 'eur',
-        quantity: req.session.dataBikeShop[i].vQtity,
-      })
-    };
-  }
+    if(req.session.dataBikeShop.length > 0){
+      req.session.stripeCard.splice(0);
+      for (var i = 0; i < req.session.dataBikeShop.length; i++){
+        req.session.stripeCard.push({
+          name: req.session.dataBikeShop[i].vModel,
+          amount: req.session.dataBikeShop[i].vPrix * 100,
+          currency: 'eur',
+          quantity: req.session.dataBikeShop[i].vQtity,
+        })
+      };
+    }
 
   // Session Stripe
   if (req.session.stripeCard.length > 0){
